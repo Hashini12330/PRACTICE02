@@ -1,31 +1,36 @@
-import java.util.*; // Imports all accessible types directly inside that package.
-
 public class Main{
     public static void main(String[] args){
 
-        Qu q = new Qu();
-        q.tasks();
+        // here cannot use Animal() instead Dog() & Cat() 
+        Animal a = new Dog();
+        Animal c = new Cat();
 
-
+        a.run();
+        c.run();
 
     }
 
 }
 
-class Qu{
-    Queue<Integer> queue = new LinkedList<>();
 
-    public void tasks(){
-        queue.add(25);
-        queue.add(30);
-        queue.add(35);
+// polimorphism --> can use with interface, abstract, inheritance
 
-        System.out.println(queue);
+interface Animal{
+    void run();
 
-        System.out.println(queue.remove());
+}
 
-        System.out.println(queue);
-
-
+class Dog implements Animal{
+    @Override 
+    public void run(){
+        System.out.println("Dog runs");
     }
 }
+
+class Cat implements Animal{
+    @Override 
+    public void run(){
+        System.out.println("Cat runs");
+    }
+}
+
