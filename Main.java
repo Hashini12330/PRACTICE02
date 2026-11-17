@@ -1,36 +1,43 @@
 public class Main{
     public static void main(String[] args){
 
-        // here cannot use Animal() instead Dog() & Cat() 
-        Animal a = new Dog();
-        Animal c = new Cat();
+        Deer d = new Deer();    // created obj for child class
 
-        a.run();
-        c.run();
+        // Upcasting
+        Animal a = d;   
+        a.eat();
+        d.run();    // cannot use "a" for run()
+       
+        System.out.println("--------------------------------------");
+
+
+        // Downcasting  --> Usually, we first perform upcasting and then downcasting.
+        Deer d2 = (Deer) a;
+        d2.eat();
+        d2.run();
 
     }
 
 }
 
 
-// polimorphism --> can use with interface, abstract, inheritance
+// Casting
 
-interface Animal{
-    void run();
+// Upcasting
 
+class Animal{
+
+    public void eat(){
+        System.out.println("Animal is eating");
+    }
 }
 
-class Dog implements Animal{
-    @Override 
+
+class Deer extends Animal{
     public void run(){
-        System.out.println("Dog runs");
+        System.out.println("Deer is running");
     }
+
 }
 
-class Cat implements Animal{
-    @Override 
-    public void run(){
-        System.out.println("Cat runs");
-    }
-}
 
