@@ -1,25 +1,37 @@
 public class Main{
     public static void main(String[] args){
+        Report r = new Report();
 
-        MathParam.operand = 64;
-        MathUtil.sqrt();
+        r.loadFromFile();
 
-        System.out.println("Square root: " + MathParam.result);
+
+        Printer p = new Printer();
+        p.print(r);
+
+        r.saveToFile();
+        
     }
 
 }
 
 
-// tight cupling --> tight coupling is BAD
-class MathParam{
-    public static double operand;
-    public static double result;
-}
+// loose coubling   --> good coupling
+class Report{       // Report handles loading and saving reports.
+    void loadFromFile(){
+        System.out.println("Loading report from file...");
+    }
 
-class MathUtil{     // MathUtil directly depends on MathParams.
-
-    public static void sqrt(){
-        MathParam.result = Math.sqrt(MathParam.operand);
+    void saveToFile(){
+        System.out.println("Saving report to file...");
     }
 
 }
+
+class Printer{      // Printer handles printing.        // ---- Therefore, they are relatively independent.
+    void print(Report report){
+        System.out.println("Printing report...");
+    }
+
+
+}
+
