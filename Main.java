@@ -1,43 +1,25 @@
 public class Main{
     public static void main(String[] args){
 
-        Deer d = new Deer();    // created obj for child class
+        MathParam.operand = 64;
+        MathUtil.sqrt();
 
-        // Upcasting
-        Animal a = d;   
-        a.eat();
-        d.run();    // cannot use "a" for run()
-       
-        System.out.println("--------------------------------------");
-
-
-        // Downcasting  --> Usually, we first perform upcasting and then downcasting.
-        Deer d2 = (Deer) a;
-        d2.eat();
-        d2.run();
-
+        System.out.println("Square root: " + MathParam.result);
     }
 
 }
 
 
-// Casting
-
-// Upcasting
-
-class Animal{
-
-    public void eat(){
-        System.out.println("Animal is eating");
-    }
+// tight cupling --> tight coupling is BAD
+class MathParam{
+    public static double operand;
+    public static double result;
 }
 
+class MathUtil{     // MathUtil directly depends on MathParams.
 
-class Deer extends Animal{
-    public void run(){
-        System.out.println("Deer is running");
+    public static void sqrt(){
+        MathParam.result = Math.sqrt(MathParam.operand);
     }
 
 }
-
-
